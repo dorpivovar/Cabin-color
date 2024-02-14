@@ -3,16 +3,14 @@ from flask import Flask, render_template, redirect
 app = Flask(__name__)
 
 
-@app.route('/distribution')
-def distribution():
-    astronauts = ['Ридли Скотт', 'Энди Уир', 'Марк Уотни',
-                  'Венката Капур', 'Тедди Сандерс', 'Шон Бин']
-    return render_template('distribution.html', astronauts=astronauts)
+@app.route('/table/<sex>/<int:age>')
+def table_param(sex, age):
+    return render_template('table.html', sex=sex, age=age)
 
 
 @app.route('/')
 def index():
-    return redirect('/distribution')
+    return redirect('/table/female/12')
 
 
 if __name__ == '__main__':
